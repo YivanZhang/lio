@@ -3,14 +3,14 @@ from torch import nn
 from .layers import FlattenLayer
 
 
-def mnist_linear(dim_output: int = 10):
+def linear(dim_output: int = 10):
     return nn.Sequential(
         FlattenLayer(),
         nn.Linear(28 ** 2, dim_output),
     )
 
 
-def mnist_cnn(dim_output: int = 10):
+def cnn(dim_output: int = 10):
     return nn.Sequential(
         nn.Conv2d(1, 32, kernel_size=3, padding=0),
         nn.ReLU(inplace=True),
