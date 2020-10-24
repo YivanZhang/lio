@@ -54,3 +54,25 @@ def rank_gumbel_loss(scale: float) -> Callable:
         return F.binary_cross_entropy_with_logits((ts[0] - ts[1]) / scale, y)
 
     return loss
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+def min_gaussian_loss(scale: float) -> Callable:
+    def loss(ts: List[torch.Tensor], y: torch.Tensor) -> torch.Tensor:
+        t = torch.cat(ts, dim=1)
+        t += torch.randn_like(t) * scale
+        return F.mse_loss(t.min(dim=1, keepdim=True)[0], y)
+
+    return loss
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+def max_gaussian_loss(scale: float) -> Callable:
+    def loss(ts: List[torch.Tensor], y: torch.Tensor) -> torch.Tensor:
+        t = torch.cat(ts, dim=1)
+        t += torch.randn_like(t) * scale
+        return F.mse_loss(t.max(dim=1, keepdim=True)[0], y)
+
+    return loss
