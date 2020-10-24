@@ -19,13 +19,13 @@ def direct_cauchy_loss(scale: float) -> Callable:
 # ----------------------------------------------------------------------------------------------------------------------
 
 def mean_gaussian_loss(ts: List[torch.Tensor], y: torch.Tensor) -> torch.Tensor:
-    t = torch.cat(ts, dim=1).mean(1, keepdim=True)
+    t = torch.cat(ts, dim=1).mean(dim=1, keepdim=True)
     return F.mse_loss(t, y)
 
 
 def mean_cauchy_loss(scale: float) -> Callable:
     def loss(ts: List[torch.Tensor], y: torch.Tensor) -> torch.Tensor:
-        t = torch.cat(ts, dim=1).mean(1, keepdim=True)
+        t = torch.cat(ts, dim=1).mean(dim=1, keepdim=True)
         return torch.log1p(((t - y) / scale).pow(2)).mean()
 
     return loss
