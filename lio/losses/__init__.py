@@ -1,1 +1,2 @@
-from . import classification, regression
+from . import classification
+from . import regression
