@@ -24,7 +24,7 @@ def pairwise_similarity_loss(activation: Callable = None) -> Callable:
         t1, t2 = ts
         p_z1 = activation(t1)
         p_z2 = activation(t2)
-        p_y1 = (p_z1 * p_z2).sum(1)
+        p_y1 = (p_z1 * p_z2).sum(dim=1)
         p_y0 = 1. - p_y1
         p_y = torch.stack((p_y0, p_y1), dim=1)
         return F.nll_loss(torch.log(p_y + 1e-32), y)
@@ -41,8 +41,8 @@ def triplet_comparison_loss(activation: Callable = None) -> Callable:
         p_z1 = activation(t1)
         p_z2 = activation(t2)
         p_z3 = activation(t3)
-        p_z12 = (p_z1 * p_z2).sum(1)
-        p_z13 = (p_z1 * p_z3).sum(1)
+        p_z12 = (p_z1 * p_z2).sum(dim=1)
+        p_z13 = (p_z1 * p_z3).sum(dim=1)
         p_y1 = p_z12 * (1. - p_z13)
         p_y2 = (1. - p_z12) * p_z13
         p_y0 = 1. - p_y1 - p_y2
