@@ -6,4 +6,5 @@ from .load import (
 
 from .dataset import (
     LioDataset,
+    IndexDataset,
 )
