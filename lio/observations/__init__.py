@@ -6,8 +6,8 @@ from .samplers import (
 
 from .transitions import (
     get_identity,
-    get_symmetry_noise,
-    get_pair_noise,
+    get_symmetric_noise,
+    get_pairwise_noise,
     get_uniform_complement,
 )
 

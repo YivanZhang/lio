@@ -5,7 +5,7 @@ def get_identity(num_classes: int) -> np.ndarray:
     return np.eye(num_classes, num_classes)
 
 
-def get_symmetry_noise(num_classes: int, noise_rate: float) -> np.ndarray:
+def get_symmetric_noise(num_classes: int, noise_rate: float) -> np.ndarray:
     if num_classes == 1:
         return np.ones((1, 1))
     else:
@@ -14,7 +14,7 @@ def get_symmetry_noise(num_classes: int, noise_rate: float) -> np.ndarray:
         return m
 
 
-def get_pair_noise(num_classes: int, noise_rate: float) -> np.ndarray:
+def get_pairwise_noise(num_classes: int, noise_rate: float) -> np.ndarray:
     if num_classes == 1:
         return np.ones((1, 1))
     else:
@@ -26,4 +26,4 @@ def get_pair_noise(num_classes: int, noise_rate: float) -> np.ndarray:
 
 
 def get_uniform_complement(num_classes: int) -> np.ndarray:
-    return get_symmetry_noise(num_classes, 1.)
+    return get_symmetric_noise(num_classes, 1.)
