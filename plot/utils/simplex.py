@@ -32,7 +32,7 @@ def lines(ax, segments, **kwargs):
 
 def boundary(ax, **kwargs):
     default = dict(linewidths=5)
-    lines(ax, [np.concatenate((Ts, Ts[:1]))], **{**default, **kwargs})
+    lines(ax, [np.concatenate((Ts, Ts[:2]))], **{**default, **kwargs})
 
 
 def scatter(ax, p, **kwargs):
