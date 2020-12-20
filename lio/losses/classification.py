@@ -4,6 +4,10 @@ import torch
 import torch.nn.functional as F
 
 
+def direct_observation_loss(t: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
+    return F.cross_entropy(t, y)
+
+
 def indirect_observation_loss(transition_matrix: torch.Tensor, activation: Callable = None) -> Callable:
     if activation is None:
         activation = lambda t: F.softmax(t, dim=1)
