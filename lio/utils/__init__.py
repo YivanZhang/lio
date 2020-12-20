@@ -1,1 +1,2 @@
-from .metrics import predict, confusion_matrix
+from . import data
+from . import metrics
