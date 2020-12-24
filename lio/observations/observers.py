@@ -2,8 +2,6 @@ import operator
 from functools import reduce
 from typing import Callable, List
 
-import numpy as np
-
 import torch
 from torch.distributions import Categorical
 
@@ -15,8 +13,7 @@ def observe(f: Callable):
     return observer
 
 
-def observe_categorical(transition_matrix: np.ndarray):
-    transition_matrix = torch.tensor(transition_matrix).float()
+def observe_categorical(transition_matrix: torch.Tensor):
     dists = [Categorical(probs=p) for p in transition_matrix]
     return observe(lambda z: dists[z].sample())
 
