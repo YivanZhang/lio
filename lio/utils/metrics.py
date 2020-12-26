@@ -8,6 +8,7 @@ from torch.utils.data import DataLoader
 def predict(model: nn.Module, loader: DataLoader, device: torch.device) -> Tuple[torch.Tensor, torch.Tensor]:
     ts = []
     ys = []
+    model.eval()
     with torch.no_grad():
         for x, y in loader:
             x = x.to(device)
