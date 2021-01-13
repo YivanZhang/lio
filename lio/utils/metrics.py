@@ -5,10 +5,11 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 
-def predict(model: nn.Module, loader: DataLoader, device: torch.device) -> Tuple[torch.Tensor, torch.Tensor]:
+def predict(model: nn.Module, loader: DataLoader) -> Tuple[torch.Tensor, torch.Tensor]:
     ts = []
     ys = []
     model.eval()
+    device = next(model.parameters()).device
     with torch.no_grad():
         for x, y in loader:
             x = x.to(device)
