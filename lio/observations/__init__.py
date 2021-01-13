@@ -8,6 +8,7 @@ from .transitions import (
     get_identity,
     get_symmetric_noise,
     get_pairwise_noise,
+    get_random_noise,
     get_uniform_complement,
 )
 
