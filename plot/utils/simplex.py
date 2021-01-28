@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib as mpl
-from matplotlib.collections import LineCollection
+from matplotlib.collections import LineCollection, PolyCollection
 
 aspect_ratio = np.sqrt(3) / 2
 # simplex [3, 2]
@@ -27,25 +27,45 @@ def init(ax):
 
 def lines(ax, segments, **kwargs):
     default = dict(linewidths=3, colors='k')
-    ax.add_collection(LineCollection(segments, **{**default, **kwargs}))
+    return ax.add_collection(LineCollection(segments, **{**default, **kwargs}))
+
+
+def polygon(ax, p, **kwargs):
+    default = dict(linewidths=3, edgecolors='k', facecolors='None')
+    return ax.add_collection(PolyCollection([p @ Ts], **{**default, **kwargs}))
 
 
 def boundary(ax, **kwargs):
     default = dict(linewidths=5)
-    lines(ax, [np.concatenate((Ts, Ts[:2]))], **{**default, **kwargs})
+    return polygon(ax, np.eye(3, 3), **{**default, **kwargs})
+
+
+def arrow(ax, start, end, **kwargs):
+    start = start @ Ts
+    end = end @ Ts
+    default = dict(width=0.01, head_length=0.03, head_width=0.03, length_includes_head=True,
+                   edgecolor='None', facecolor='k')
+    return ax.arrow(*start, *(end - start), **{**default, **kwargs})
 
 
 def scatter(ax, p, **kwargs):
     if 'color' not in kwargs and 'c' not in kwargs:
         kwargs['color'] = p @ Tc
+    if 'c' in kwargs:
+        kwargs['cmap'] = 'magma'
     default = dict(s=40, edgecolor='none')
-    ax.scatter(*(p @ Ts).T, **{**default, **kwargs})
+    return ax.scatter(*(p @ Ts).T, **{**default, **kwargs})
 
 
 def tricontour(ax, p, z, **kwargs):
+    if 'colors' not in kwargs and 'cmap' not in kwargs:
+        kwargs['cmap'] = 'magma'
     default = dict(linewidths=3)
-    ax.tricontour(*(p @ Ts).T, z, **{**default, **kwargs})
+    return ax.tricontour(*(p @ Ts).T, z, **{**default, **kwargs})
 
 
 def tricontourf(ax, p, z, **kwargs):
-    ax.tricontourf(*(p @ Ts).T, z, **kwargs)
+    if 'colors' not in kwargs and 'cmap' not in kwargs:
+        kwargs['cmap'] = 'magma'
+    default = dict()
+    return ax.tricontourf(*(p @ Ts).T, z, **{**default, **kwargs})
