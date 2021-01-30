@@ -11,11 +11,10 @@ def predict(model: nn.Module, loader: DataLoader) -> Tuple[torch.Tensor, torch.T
     model.eval()
     device = next(model.parameters()).device
     with torch.no_grad():
-        for x, y in loader:
-            x = x.to(device)
-            y = y.to(device)
-            ts.append(model(x))
-            ys.append(y)
+        for *xs, y in loader:
+            xs = tuple(x.to(device) for x in xs)
+            ts.append(model(*xs))
+            ys.append(y.to(device))
     t = torch.cat(ts)
     y = torch.cat(ys)
     return t, y
