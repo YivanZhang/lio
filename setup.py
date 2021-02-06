@@ -2,7 +2,7 @@ import pathlib
 from setuptools import setup, find_packages
 
 NAME = 'lio'
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 DESCRIPTION = 'Learning from Indirect Observations'
 
 HERE = pathlib.Path(__file__).parent
@@ -16,8 +16,8 @@ PYTHON_REQUIRES = '>=3.8.0'
 PACKAGES = find_packages()
 INSTALL_REQUIRES = [
     'numpy',
+    'scipy',
     'torch',
-    'torchvision',
 ]
 
 setup(
