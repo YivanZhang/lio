@@ -27,7 +27,8 @@ pip install lio
   [[NeurIPS'20]](https://proceedings.neurips.cc/paper/2020/hash/5b0fa0e4c041548bb6289e15d865a696-Abstract.html)
 
 
-- **Learning Noise Transition Matrix from Only Noisy Labels via Total Variation Regularization**  
+- **Learning Noise Transition Matrix from Only Noisy Labels**  
+  **via Total Variation Regularization**  
   Yivan Zhang, Gang Niu, and Masashi Sugiyama  
   [[arXiv]](https://arxiv.org/abs/2102.02414)
   [[code]](/ex/transition-matrix)  
