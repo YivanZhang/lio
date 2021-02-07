@@ -8,3 +8,26 @@
 <a href="https://pypi.org/project/lio/">
   <img alt="pypi" src="https://badge.fury.io/py/lio.svg" alt="PyPI version">
 </a>
+
+## Installation
+
+```sh
+pip install lio
+```
+
+## References
+
+- **Learning from Indirect Observations**  
+  Yivan Zhang, Nontawat Charoenphakdee, and Masashi Sugiyama  
+  [[arXiv]](https://arxiv.org/abs/1910.04394)
+
+- **Learning from Aggregate Observations**  
+  Yivan Zhang, Nontawat Charoenphakdee, Zhenguo Wu, and Masashi Sugiyama  
+  [[arXiv]](https://arxiv.org/abs/2004.06316)
+  [[NeurIPS'20]](https://proceedings.neurips.cc/paper/2020/hash/5b0fa0e4c041548bb6289e15d865a696-Abstract.html)
+
+
+- **Learning Noise Transition Matrix from Only Noisy Labels via Total Variation Regularization**  
+  Yivan Zhang, Gang Niu, and Masashi Sugiyama  
+  [[arXiv]](https://arxiv.org/abs/2102.02414)
+  [[code]](/ex/transition-matrix)  
