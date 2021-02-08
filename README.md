@@ -14,9 +14,14 @@
 ```sh
 pip install lio
 ```
+or
+```sh
+git clone https://github.com/YivanZhang/lio.git
+pip install -e .
+```
 
-Most of the modules are designed as small (higher-order) functions. Feel free to copy-paste only what you need for your
-existing workflow to reduce dependencies.
+Most of the modules are designed as small (higher-order) functions.  
+Feel free to copy-paste only what you need for your existing workflow to reduce dependencies.
 
 ## References
 
