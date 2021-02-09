@@ -205,7 +205,7 @@ def run(model, transition, scheduler, loader_tr, loader_ts, train_step,  # train
         # test
         if it % num_iter_test == 0 or it == num_iter_total:
             t, z = predict(model, loader_ts)
-            accuracy = (z == t.argmax(dim=1)).sum().item() / len(z)
+            accuracy = z.eq(t.argmax(dim=1)).sum().item() / len(z)
 
             # log
             if (m := transition.matrix) is not None:

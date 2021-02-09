@@ -174,7 +174,7 @@ def get_accuracy(model, loader):
         for x, z in loader:
             x = x.cuda(non_blocking=True)
             z = z.cuda(non_blocking=True)
-            num_correct += (model(x).argmax(dim=1) == z).sum()
+            num_correct += z.eq(model(x).argmax(dim=1)).sum()
     dist.all_reduce(num_correct)
     accuracy = num_correct.item() / len(loader.dataset)
     return accuracy
