@@ -8,7 +8,7 @@ import torch
 from torch import nn, optim
 from torch.utils.data import TensorDataset, DataLoader
 
-from lio.models import mnist, cifar
+from lio.models import mnist, resnet
 from lio.observations import get_identity, get_symmetric_noise, get_pairwise_noise, get_random_noise
 from lio.utils.data import load_all_data, load_mnist, load_cifar
 from lio.utils.metrics import predict
@@ -138,7 +138,7 @@ def model_mnist(device, lr, lr_decay):
 
 @ex.capture(prefix='cifar')
 def model_cifar(device, num_classes, num_iter_warmup, num_iter_total, lr, momentum, weight_decay, _log):
-    model = cifar.resnet18(dim_output=num_classes).to(device)
+    model = resnet.resnet18(dim_output=num_classes).to(device)
     if torch.cuda.device_count() > 1:
         _log.info(f'using {torch.cuda.device_count()} GPUs')
         model = nn.DataParallel(model)
