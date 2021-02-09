@@ -33,6 +33,7 @@ Feel free to copy-paste only what you need for your existing workflow to reduce 
   Yivan Zhang, Nontawat Charoenphakdee, Zhenguo Wu, and Masashi Sugiyama  
   [[arXiv]](https://arxiv.org/abs/2004.06316)
   [[NeurIPS'20]](https://proceedings.neurips.cc/paper/2020/hash/5b0fa0e4c041548bb6289e15d865a696-Abstract.html)
+  [[poster]](posters/neurips20_aggregate_observations.pdf)
 
 
 - **Learning Noise Transition Matrix from Only Noisy Labels**  
