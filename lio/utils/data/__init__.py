@@ -8,5 +8,6 @@ from .sampler import (
 from .load import (
     load_all_data,
     load_mnist,
+    load_svhn,
     load_cifar,
 )

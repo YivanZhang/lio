@@ -22,6 +22,13 @@ def load_mnist(data_dir: str, dataset_name: str) -> Tuple[Dataset, Dataset]:
     return dataset_tr, dataset_ts
 
 
+def load_svhn(data_dir: str) -> Tuple[Dataset, Dataset]:
+    transform = transforms.ToTensor()
+    dataset_tr = datasets.SVHN(data_dir, split='train', transform=transform, download=True)
+    dataset_ts = datasets.SVHN(data_dir, split='test', transform=transform, download=True)
+    return dataset_tr, dataset_ts
+
+
 def load_cifar(data_dir: str, dataset_name: str) -> Tuple[Dataset, Dataset]:
     dataset = {
         'cifar10': datasets.CIFAR10,
