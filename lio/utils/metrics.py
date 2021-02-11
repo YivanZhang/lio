@@ -1,6 +1,7 @@
 from typing import Tuple
 
 import torch
+import torch.nn.functional as F
 from torch import nn
 from torch.utils.data import DataLoader
 
@@ -29,3 +30,14 @@ def confusion_matrix(v1: torch.Tensor, v2: torch.Tensor,
     pairs, counts = torch.unique(torch.stack((v1, v2)), dim=1, return_counts=True)
     matrix[pairs[0], pairs[1]] = counts
     return matrix
+
+
+def expected_calibration_error(t: torch.Tensor, y: torch.Tensor, num_bins: int = 15) -> torch.Tensor:
+    conf, y_ = F.softmax(t, dim=1).max(dim=1)
+    acc = y.eq(y_).float()
+    ece = torch.zeros(1).to(t.device)
+    bins = torch.linspace(0, 1, num_bins + 1)
+    for bin_lower, bin_upper in zip(bins[:-1], bins[1:]):
+        if (in_bin := conf.gt(bin_lower) & conf.le(bin_upper)).any():
+            ece += (acc[in_bin].mean() - conf[in_bin].mean()).abs() * in_bin.float().mean()
+    return ece
