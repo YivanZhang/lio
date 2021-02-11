@@ -130,10 +130,10 @@ def get_train_step(model, transition, optimizer, regularization=None, gamma=0.):
         y = y.to(device)
         # forward
         t = model(x)
-        loss = transition.loss(t, y) - gamma * regularization(t)
+        l = transition.loss(t, y) - gamma * regularization(t)
         # backward
         optimizer.zero_grad()
-        loss.backward()
+        l.backward()
         # optimization
         optimizer.step()  # optimize model
         transition.update(t, y)  # optimize transition
