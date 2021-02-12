@@ -74,6 +74,19 @@ def config():
 
 @ex.capture
 @lru_cache(maxsize=1)
+def get_datasets(data_dir, dataset_name):
+    if 'mnist' in dataset_name:
+        dataset_tr, dataset_ts = tuple(TensorDataset(*load_all_data(dataset))
+                                       for dataset in load_mnist(data_dir, dataset_name))
+    elif 'cifar' in dataset_name:
+        dataset_tr, dataset_ts = load_cifar(data_dir=data_dir, dataset_name=dataset_name)
+    else:
+        raise ValueError
+    return dataset_tr, dataset_ts
+
+
+@ex.capture
+@lru_cache(maxsize=1)
 def get_transition_matrix(noise_type, num_classes, _log):
     # clean
     if noise_type == 'none':
@@ -98,24 +111,11 @@ def get_transition_matrix(noise_type, num_classes, _log):
 
 @ex.capture
 @lru_cache(maxsize=1)
-def get_datasets(data_dir, dataset_name):
-    if 'mnist' in dataset_name:
-        dataset_tr, dataset_ts = tuple(TensorDataset(*load_all_data(dataset))
-                                       for dataset in load_mnist(data_dir, dataset_name))
-    elif 'cifar' in dataset_name:
-        dataset_tr, dataset_ts = load_cifar(data_dir=data_dir, dataset_name=dataset_name)
-    else:
-        raise ValueError
-    return dataset_tr, dataset_ts
-
-
-@ex.capture
-@lru_cache(maxsize=1)
-def add_noise(dataset, noise_type):  # noqa
-    transition_matrix = get_transition_matrix()
-    if transition_matrix.diagonal().min() == 1:  # clean
+def add_noise(dataset, noise_type):
+    if noise_type == 'clean':
         return dataset
-    else:  # noisy
+    else:
+        transition_matrix = get_transition_matrix()
         return synthetic_noise(dataset, transition_matrix)
 
 
