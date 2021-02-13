@@ -29,6 +29,62 @@ def load_svhn(data_dir: str) -> Tuple[Dataset, Dataset]:
     return dataset_tr, dataset_ts
 
 
+# permuted CIFAR classes
+cifar10_classes = [
+    # large vehicle
+    'airplane', 'ship',
+    # small vehicle
+    'automobile', 'truck',
+    # wild animal
+    'bird', 'deer', 'frog',
+    # domestic-animal
+    'cat', 'dog', 'horse',
+]
+
+cifar100_classes = [
+    # aquatic mammals
+    'beaver', 'dolphin', 'otter', 'seal', 'whale',
+    # fish
+    'aquarium_fish', 'flatfish', 'ray', 'shark', 'trout',
+    # flowers
+    'orchid', 'poppy', 'rose', 'sunflower', 'tulip',
+    # food containers
+    'bottle', 'bowl', 'can', 'cup', 'plate',
+    # fruit and vegetables
+    'apple', 'mushroom', 'orange', 'pear', 'sweet_pepper',
+    # household electrical devices
+    'clock', 'keyboard', 'lamp', 'telephone', 'television',
+    # household furniture
+    'bed', 'chair', 'couch', 'table', 'wardrobe',
+    # insects
+    'bee', 'beetle', 'butterfly', 'caterpillar', 'cockroach',
+    # large carnivores
+    'bear', 'leopard', 'lion', 'tiger', 'wolf',
+    # large man-made outdoor things
+    'bridge', 'castle', 'house', 'road', 'skyscraper',
+    # large natural outdoor scenes
+    'cloud', 'forest', 'mountain', 'plain', 'sea',
+    # large omnivores and herbivores
+    'camel', 'cattle', 'chimpanzee', 'elephant', 'kangaroo',
+    # medium-sized mammals
+    'fox', 'porcupine', 'possum', 'raccoon', 'skunk',
+    # non-insect invertebrates
+    'crab', 'lobster', 'snail', 'spider', 'worm',
+    # people
+    'baby', 'boy', 'girl', 'man', 'woman',
+    # reptiles
+    'crocodile', 'dinosaur', 'lizard', 'snake', 'turtle',
+    # small mammals
+    'hamster', 'mouse', 'rabbit', 'shrew', 'squirrel',
+    # trees
+    'maple_tree', 'oak_tree', 'palm_tree', 'pine_tree', 'willow_tree',
+    # vehicles 1
+    'bicycle', 'bus', 'motorcycle', 'pickup_truck', 'train',
+    # vehicles 2
+    'lawn_mower', 'rocket', 'streetcar', 'tank', 'tractor',
+]
+
+
 def load_cifar(data_dir: str, dataset_name: str) -> Tuple[Dataset, Dataset]:
     dataset = {
         'cifar10': datasets.CIFAR10,
@@ -55,34 +111,8 @@ def load_cifar(data_dir: str, dataset_name: str) -> Tuple[Dataset, Dataset]:
                              transforms.Normalize(mean, std),
                          ]))
     classes = {
-        'cifar10': [
-            'airplane', 'ship',
-            'automobile', 'truck',
-            'bird', 'deer', 'frog',
-            'cat', 'dog', 'horse',
-        ],
-        'cifar100': [
-            'beaver', 'dolphin', 'otter', 'seal', 'whale',
-            'aquarium_fish', 'flatfish', 'ray', 'shark', 'trout',
-            'orchid', 'poppy', 'rose', 'sunflower', 'tulip',
-            'bottle', 'bowl', 'can', 'cup', 'plate',
-            'apple', 'mushroom', 'orange', 'pear', 'sweet_pepper',
-            'clock', 'keyboard', 'lamp', 'telephone', 'television',
-            'bed', 'chair', 'couch', 'table', 'wardrobe',
-            'bee', 'beetle', 'butterfly', 'caterpillar', 'cockroach',
-            'bear', 'leopard', 'lion', 'tiger', 'wolf',
-            'bridge', 'castle', 'house', 'road', 'skyscraper',
-            'cloud', 'forest', 'mountain', 'plain', 'sea',
-            'camel', 'cattle', 'chimpanzee', 'elephant', 'kangaroo',
-            'fox', 'porcupine', 'possum', 'raccoon', 'skunk',
-            'crab', 'lobster', 'snail', 'spider', 'worm',
-            'baby', 'boy', 'girl', 'man', 'woman',
-            'crocodile', 'dinosaur', 'lizard', 'snake', 'turtle',
-            'hamster', 'mouse', 'rabbit', 'shrew', 'squirrel',
-            'maple_tree', 'oak_tree', 'palm_tree', 'pine_tree', 'willow_tree',
-            'bicycle', 'bus', 'motorcycle', 'pickup_truck', 'train',
-            'lawn_mower', 'rocket', 'streetcar', 'tank', 'tractor',
-        ],
+        'cifar10': cifar10_classes,
+        'cifar100': cifar100_classes,
     }[dataset_name]
     blocks = {
         'cifar10': [2, 2, 3, 3],
