@@ -27,7 +27,7 @@ def init(ax):
 
 def lines(ax, segments, **kwargs):
     default = dict(linewidths=3, colors='k')
-    return ax.add_collection(LineCollection(segments, **{**default, **kwargs}))
+    return ax.add_collection(LineCollection([s @ Ts for s in segments], **{**default, **kwargs}))
 
 
 def polygon(ax, p, **kwargs):
