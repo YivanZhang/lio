@@ -74,3 +74,9 @@ def tricontourf(ax, p, z, **kwargs):
         kwargs['cmap'] = 'magma'
     default = dict()
     return ax.tricontourf(*(p @ Ts).T, z, **{**default, **kwargs})
+
+
+def quiver(ax, p, d, **kwargs):
+    Td = Ts - np.array([1 / 2, np.sqrt(3) / 6])
+    default = dict()
+    return ax.quiver(*(p @ Ts).T, *(d @ Td).T, **{**default, **kwargs})
