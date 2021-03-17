@@ -57,6 +57,11 @@ def scatter(ax, p, **kwargs):
     return ax.scatter(*(p @ Ts).T, **{**default, **kwargs})
 
 
+def text(ax, p, s, **kwargs):
+    default = dict(fontsize=20, ha='center', va='center')
+    return ax.text(*(p @ Ts), s, **{**default, **kwargs})
+
+
 def tricontour(ax, p, z, **kwargs):
     if 'colors' not in kwargs and 'cmap' not in kwargs:
         kwargs['cmap'] = 'magma'
