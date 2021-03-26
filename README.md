@@ -40,4 +40,10 @@ Feel free to copy-paste only what you need for your existing workflow to reduce 
   **via Total Variation Regularization**  
   Yivan Zhang, Gang Niu, and Masashi Sugiyama  
   [[arXiv]](https://arxiv.org/abs/2102.02414)
-  [[code]](/ex/transition-matrix)  
+  [[code]](/ex/transition-matrix)
+
+- **Approximating Instance-Dependent Noise**  
+  **via Instance-Confidence Embedding**  
+  Yivan Zhang and Masashi Sugiyama  
+  [[arXiv]](https://arxiv.org/abs/2103.13569)
+  [[code]](/ex/instance-embedding)
