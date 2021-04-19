@@ -2,7 +2,7 @@ import pathlib
 from setuptools import setup, find_packages
 
 NAME = 'lio'
-VERSION = '0.2.1'
+VERSION = '0.3.0'
 DESCRIPTION = 'Learning from Indirect Observations'
 
 HERE = pathlib.Path(__file__).parent
