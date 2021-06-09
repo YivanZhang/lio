@@ -38,6 +38,7 @@ Feel free to copy-paste only what you need for your existing workflow to reduce 
 - **Learning Noise Transition Matrix from Only Noisy Labels via Total Variation Regularization**  
   Yivan Zhang, Gang Niu, and Masashi Sugiyama  
   [[arXiv]](https://arxiv.org/abs/2102.02414)
+  [[ICML'21]]()
   [[code]](/ex/transition-matrix)
 
 - **Approximating Instance-Dependent Noise via Instance-Confidence Embedding**  
